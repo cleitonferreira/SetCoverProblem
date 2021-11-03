@@ -29,7 +29,7 @@ public class Main2
     {
         final int size = listOfSets.size();
         if (size > 20)
-            throw new IllegalArgumentException("Too many combinations");
+            throw new IllegalArgumentException("Muitas combinações");
         int combinations = 1 << size;
         List<Set<T>> possibleSolutions = new ArrayList<Set<T>>();
         for (int l = 0; l < combinations; l++)
@@ -81,6 +81,6 @@ public class Main2
         };
         Set<Set<Integer>> firstSolution = shortestCombination(filter,
                 listOfSets);
-        System.out.println("The shortest combination was " + firstSolution);
+        System.out.println("A combinação mais curta foi: " + firstSolution);
     }
 }
