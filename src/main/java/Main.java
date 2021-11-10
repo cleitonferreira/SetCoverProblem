@@ -1,10 +1,7 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.LinkedHashMap;
-import java.util.Set;
+import java.util.*;
 
 /* Cobertura de conjunto gananciosa
 * Definição de problema
@@ -20,11 +17,17 @@ public class Main {
 	private static Set<Integer> intersection;
 
 	public static void main(String[] args) {
-		readFile("subSets.txt");
 
-		printSets();
+		List<String> listaArquivos = Arrays.asList("subSets.txt", "subSets2.txt", "subSets3.txt", "subSets4.txt",
+				"subSets5.txt", "subSets6.txt", "subSets7.txt", "subSets8.txt", "subSets9.txt", "subSets10.txt", "subSets11.txt");
 
-		greedySetCover();
+		for(String arquivo: listaArquivos) {
+			readFile(arquivo);
+		}
+
+		/*readFile("scp-instances/scp42.txt");
+		  printSets();
+		  greedySetCover();*/
 	}
 
 	private static void readFile(String filename) {
@@ -34,6 +37,7 @@ public class Main {
 			String line;
 			while ((line = in.readLine()) != null) {
 				String elements[] = line.split(",");
+				//String elements[] = line.trim().split(" ");
 				Set<Integer> list = new HashSet<Integer>();
 				for (String e : elements) {
 					list.add(Integer.parseInt(e));
@@ -47,6 +51,17 @@ public class Main {
 			System.out.println(e.getMessage());
 			System.exit(1);
 		}
+		printSets();
+	}
+
+	private static void printSets() {
+		for (String key : sets.keySet()) {
+			System.out.printf("%-3s = ",key);
+			System.out.println(sets.get(key));
+		}
+		System.out.println("\nConjunto Universo  = " + universe);
+
+		greedySetCover();
 	}
 
 	private static void greedySetCover() {
@@ -69,13 +84,6 @@ public class Main {
 			coverKeys.add(maxKey);
 		}
 		System.out.println("Set-cover = " + coverKeys);
-	}
-
-	private static void printSets() {
-		for (String key : sets.keySet()) {
-			System.out.printf("%-3s = ",key);
-			System.out.println(sets.get(key));
-		}
-		System.out.println("\nConjunto Universo  = " + universe);
+		System.out.println("------------------------------------------------------------------------------------");
 	}
 }
